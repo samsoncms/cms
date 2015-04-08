@@ -29,7 +29,7 @@ if (file_exists('../../../app/config')) {
     /** Special constant to disable local ActiveRecord configuration */
     define('EXTERNAL_CONFIG', true);
     // Signal core configure event
-    \samson\core\Event::signal('core.configure', array('../../../'.__SAMSON_CONFIG_PATH, __SAMSON_PUBLIC_PATH.__SAMSON_BASE__));
+    \samsonphp\event\Event::signal('core.configure', array('../../../'.__SAMSON_CONFIG_PATH, __SAMSON_PUBLIC_PATH.__SAMSON_BASE__));
 }
 
 // Set supported locales
@@ -38,7 +38,7 @@ setlocales('en', 'ua', 'ru');
 // Start SamsonPHP application
 s()
     ->composer()
-    ->subscribe('core.e404','default_e404')
+    ->subscribe('core.e404', 'default_e404')
     ->subscribe('core.routing', array(url(),'router'));
 
 /** Automatic external SamsonCMS Application searching  */
@@ -57,4 +57,4 @@ if (file_exists('../../../src/')) {
     }
 }
 
-s()->start('default');
+s()->start('template');

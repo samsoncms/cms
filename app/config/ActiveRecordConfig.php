@@ -9,9 +9,9 @@ if (!defined('EXTERNAL_CONFIG')) {
     /** Test ActiveRecord configuration for development */
     class ActiveRecordConfig extends \samson\core\Config
     {
-        public $name = 'purpurina';
-        public $login = 'nazarenko';
-        public $pwd = 'AN12345!';
+        public $name = 'samsonos.com';
+        public $login = 'samsonos';
+        public $pwd = 'AzUzrcVe4LJJre9f';
 
         public $relations = array(
             array('material', 'material', 'company_id', 0, 'MaterialID', 'productcompany')
