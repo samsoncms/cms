@@ -5,8 +5,9 @@
  * Date: 20.10.2014
  * Time: 12:20
  */
+namespace samsoncms;
 
-class SocialConfig extends \samson\core\Config
+class SocialConfig extends \samsonphp\config\Entity
 {
     public $__module = 'social';
 

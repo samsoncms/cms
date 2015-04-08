@@ -1,5 +1,5 @@
 <?php
-namespace cms;
+namespace samsoncms;
 
 /**
  * Created by Vitaly Iegorov <egorov@samsonos.com>
@@ -7,7 +7,7 @@ namespace cms;
  */
 if (!defined('EXTERNAL_CONFIG')) {
     /** Test ActiveRecord configuration for development */
-    class CompressorConfig extends \samson\core\Config
+    class CompressorConfig extends \samsonphp\config\Entity
     {
         public $output = '/var/www.final/cms.dev/www/';
     }

@@ -5,9 +5,10 @@
  * Date: 20.10.2014
  * Time: 12:21
  */
+namespace samsoncms;
 
 /** Конфигурация для SocialEmail */
-class SocialEmailConfig extends \samson\core\Config
+class SocialEmailConfig extends \samsonphp\config\Entity
 {
     public $__module = 'socialemail';
 
