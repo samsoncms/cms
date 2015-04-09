@@ -10,7 +10,10 @@
 
     <body id="<?php v('id')?>">
         <?php m('template')->render('menu')?>
-        <?php m('template')->render('container')?>
+
+        <section id="template-container">
+            <?php m()->render()?>
+        </section>
     </body>
 
 </html>
