@@ -57,6 +57,8 @@ if (file_exists('../../../src/')) {
     }
 }
 
+// TODO: This code below has to be removed when all applications will upgrade
+
 /**
  * @deprecated Old styled main page rendering, must be build on events
  */
