@@ -85,10 +85,11 @@ function oldMenuRenderer(&$html, &$subMenu)
         // Show only visible apps
         if ($app->hide == false) {
             // Render application menu item
-            $html .= m()
+            $html .= m('template')
                 ->view('menu/item')
                 ->active(url()->module == $app->id() ? 'active' : '')
                 ->app($app)
+                ->icon($app->icon)
                 ->name(isset($app->name{0}) ? $app->name : (isset($app->app_name{0}) ? $app->app_name : ''))
                 ->output();
         }

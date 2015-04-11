@@ -49,7 +49,7 @@
         "samsonos/cms_app_export":"*",
         "samsonos/cms_app_cleaner":"*",
         "samsonos/cms_app_field":"*",
-        "samsonos/cms_app_user":"*",
+        "samsoncms/user":"*",
         "samsonos/cms_app_gallery":"*",
         "samsonos/cms_app_relatedmaterial":"*",
         "samsonos/cms_app_materialtable":"*",
