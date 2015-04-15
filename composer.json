@@ -36,6 +36,7 @@
         "samsonos/social_email":"*",
         "samsonos/cms_api":"*",
         "samsoncms/template":"*",
+        "samsonos/cms_table":"*",
         "samsonos/cms_app":"*",
         "samsonos/cms_input":"*",
         "samsonos/cms_input_date":"*",
