@@ -28,8 +28,6 @@ function oldMainRenderer(&$html)
  */
 function oldMenuRenderer(&$html, &$subMenu)
 {
-    $html = '';
-
     // Iterate loaded samson\cms\application
     foreach (\samson\cms\App::loaded() as $app) {
         // Show only visible apps
