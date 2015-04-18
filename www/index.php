@@ -38,7 +38,6 @@ setlocales('en', 'ua', 'ru');
 // Start SamsonPHP application
 s()
     ->composer()
-    ->subscribe('core.e404', 'default_e404')
     ->subscribe('core.routing', array(url(),'router'));
 
 /** Automatic external SamsonCMS Application searching  */
