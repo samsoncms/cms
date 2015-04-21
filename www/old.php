@@ -29,7 +29,7 @@ function oldMainRenderer(&$html)
 function oldMenuRenderer(&$html, &$subMenu)
 {
     // Iterate loaded samson\cms\application
-    foreach (\samson\cms\App::loaded() as $app) {
+    foreach (\samsoncms\Application::loaded() as $app) {
         // Show only visible apps
         if ($app->hide == false) {
             // Render application menu item
