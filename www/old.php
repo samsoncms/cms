@@ -38,7 +38,7 @@ function oldMenuRenderer(&$html, &$subMenu)
                 ->active(url()->module == $app->id() ? 'active' : '')
                 ->app($app)
                 ->icon($app->icon)
-                ->name(isset($app->name{0}) ? $app->name : (isset($app->app_name{0}) ? $app->app_name : ''))
+                ->name(isset($app->name{0}) ? $app->name : '')
                 ->output();
         }
     }
@@ -46,7 +46,7 @@ function oldMenuRenderer(&$html, &$subMenu)
     $subMenu = '';
 
     // Find current SamsonCMS application
-    if (\samson\cms\App::find(url()->module, $app/*@var $app App*/)) {
+    if (\samsoncms\Application::find(url()->module, $app/*@var $app App*/)) {
         // Render main-menu application sub-menu
         $subMenu = $app->submenu();
 
