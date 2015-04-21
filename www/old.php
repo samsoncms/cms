@@ -15,7 +15,7 @@
 function oldMainRenderer(&$html)
 {
     // Render application main page block
-    foreach (\samson\cms\App::loaded() as $app) {
+    foreach (\samsoncms\Application::loaded() as $app) {
         // Show only visible apps
         if ($app->hide == false) {
             $html .= $app->main();
