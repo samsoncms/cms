@@ -47,9 +47,6 @@ function oldMenuRenderer(&$html, &$subMenu)
 
     // Find current SamsonCMS application
     if (\samsoncms\Application::find(url()->module, $app/*@var $app App*/)) {
-        // Render main-menu application sub-menu
-        $subMenu = $app->submenu();
-
         // If module has sub_menu view - render it
         if ($app->findView('sub_menu')) {
             $subMenu .= $app->view('sub_menu')->output();
