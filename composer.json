@@ -14,7 +14,6 @@
     "aws/aws-sdk-php": "2.*"
   },
   "require-dev": {
-    "samsoncms/application":"*",
     "samsonphp/fs_aws":"*",
     "samsoncms/material":"*",
     "samsoncms/help":"*",
