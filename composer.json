@@ -13,7 +13,19 @@
         "aws/aws-sdk-php": "2.*"
     },
     "require-dev": {
-      "samsoncms/application":"*"
+      "samsoncms/application":"*",
+      "samsoncms/material":"*",
+      "samsonos/cms_app_navigation":"*",
+      "samsonos/cms_app_signin":"*",
+      "samsonos/cms_app_export":"*",
+      "samsonos/cms_app_cleaner":"*",
+      "samsonos/cms_app_field":"*",
+      "samsonos/cms_app_gallery":"*",
+      "samsonos/cms_app_relatedmaterial":"*",
+      "samsonos/cms_app_materialtable":"*",
+      "samsonos/cms_input_material": "*",
+      "samsoncms/help":"*",
+      "samsoncms/user":"*"
     },
 	"license":"Open Software License (OSL) v 3.0",
 	"homepage":"http://samsoncms.com/"
