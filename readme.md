@@ -5,7 +5,7 @@
 ##Installation 
 First of all you must get working [Composer](http://getcomposer.org).
 
-Use ```php composer.phar create-project --prefer-dist -s dev samsonos/cms [your_path]``` for automatic installation of SamsonCMS
+Use ```php composer.phar create-project --prefer-dist -s dev samsoncms/cms [your_path]``` for automatic installation of SamsonCMS
 and all of its dependencies.
 
 ##Roadmap
