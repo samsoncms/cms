@@ -8,3 +8,4 @@ vendor/*
 cms/*
 out/*
 composer.lock
+app/config/ActiveRecordConfig.php
