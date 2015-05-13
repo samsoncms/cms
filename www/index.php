@@ -22,6 +22,7 @@ if (!defined('DEFAULT_LOCALE')) {
 /** Require composer autoloader */
 if (!class_exists('samson\core\Core')) {
     require_once('../vendor/autoload.php');
+    require_once('../vendor/samsonos/php_core/src/samson.php');
 }
 
 /** Automatic parent web-application configuration read */
