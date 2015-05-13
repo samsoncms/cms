@@ -17,7 +17,7 @@ before_script:
   - "sh -e /etc/init.d/xvfb start"
   - "export DISPLAY=:99.0"
   - "wget http://selenium.googlecode.com/files/selenium-server-standalone-2.31.0.jar"
-  - "java -jar selenium-server-standalone-2.31.0.jar > /dev/null &"
+  - "java -jar selenium-server-standalone-2.31.0.jar --webdriver=8643> /dev/null &"
   - sleep 5
 
 script:
