@@ -4,5 +4,4 @@ Feature: SamsonCMS authorization
 
   Scenario: Authorization
     Given I am on homepage
-    Then I should see "Signin"
-
+    Then I should see 1 "button.btn-lg.btn-signin" elements
