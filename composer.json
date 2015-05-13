@@ -26,11 +26,11 @@
     "samsonos/cms_app_relatedmaterial":"*",
     "samsonos/cms_app_materialtable":"*",
     "samsonos/cms_input_material":"*",
-    "behat/behat": "*",
-    "behat/mink": "*",
-    "behat/mink-extension": "*",
-    "behat/mink-goutte-driver": "*",
-    "behat/mink-selenium2-driver": "*"
+    "behat/behat": "3.*@stable",
+    "behat/mink": "1.6.*@stable",
+    "behat/mink-extension": "@stable",
+    "behat/mink-goutte-driver": "@stable",
+    "behat/mink-selenium2-driver": "@stable"
   },
   "license": "Open Software License (OSL) v 3.0",
   "homepage": "http://samsoncms.com/"
