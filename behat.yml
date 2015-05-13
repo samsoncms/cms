@@ -4,7 +4,7 @@ default:
     locale: en
   extensions:
     Behat\MinkExtension:
-      base_url: https://egorov.cms.local
+      base_url: http://egorov.cms.local
       sessions:
         default:
           goette: ~
