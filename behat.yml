@@ -4,7 +4,8 @@ default:
     locale: en
   extensions:
     Behat\MinkExtension:
-      base_url: 'http://egorov.cms.local'
+      #base_url: 'http://egorov.cms.local'
+      base_url: https://localhost
       sessions:
         default:
           selenium2:
