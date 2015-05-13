@@ -16,4 +16,4 @@ before_script:
   - sudo /etc/init.d/apache2 restart
 
 script:
- - phantomjs --webdriver=8643 & vendor/bin/behat -c phantomjs
+ - vendor/bin/behat -c phantomjs
