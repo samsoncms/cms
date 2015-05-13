@@ -1,5 +1,9 @@
 # behat.yml
 default:
+  suites:
+    first:
+      mink_session: default
+      mink_javascript_session: selenium2
   translation:
     locale: en
   extensions:
@@ -7,7 +11,10 @@ default:
       base_url: http://egorov.cms.local
       sessions:
         default:
-          goette: ~
+          goutte: ~
+        selenium2:
+          selenium2:
+            wd_host: "http://localhost:8643/wd/hub"
 
 
 phantomjs:
