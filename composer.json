@@ -34,5 +34,8 @@
     "behat/mink-zombie-driver" : "@stable"
   },
   "license": "Open Software License (OSL) v 3.0",
-  "homepage": "http://samsoncms.com/"
+  "homepage": "http://samsoncms.com/",
+  "config":{
+    "github-protocols":"[https]"
+  }
 }
