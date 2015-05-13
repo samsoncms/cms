@@ -18,6 +18,4 @@ before_script:
   - phantomjs --webdriver=8643
 
 script:
- #- mkdir -p build/logs
- #- vendor/bin/phpunit --verbose --coverage-clover build/logs/clover.xml
- - vendor/bin/behat
+ - vendor/bin/behat -c phantomjs
