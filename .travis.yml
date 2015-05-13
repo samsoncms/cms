@@ -15,7 +15,6 @@ before_script:
   - echo "127.0.0.1 test.local" | sudo tee -a /etc/hosts
   - sudo /etc/init.d/apache2 restart
   - sudo apt-get install phantomjs
-  - phantomjs --webdriver=8643
 
 script:
- - vendor/bin/behat -c phantomjs
+ - phantomjs --webdriver=8643 & vendor/bin/behat -c phantomjs
