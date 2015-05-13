@@ -14,11 +14,8 @@ before_script:
   - sudo sed -i -e "/DocumentRoot/i\ServerName test.local" /etc/apache2/sites-available/default
   - echo "127.0.0.1 test.local" | sudo tee -a /etc/hosts
   - sudo /etc/init.d/apache2 restart
-  - "sh -e /etc/init.d/xvfb start"
-  - "export DISPLAY=:99.0"
-  - "wget http://selenium.googlecode.com/files/selenium-server-standalone-2.31.0.jar"
-  - "java -jar selenium-server-standalone-2.31.0.jar --webdriver=8643> /dev/null &"
-  - sleep 5
+  - sudo apt-get install phantomjs
+  - phantomjs --webdriver=8643
 
 script:
  #- mkdir -p build/logs
