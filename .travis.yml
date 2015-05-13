@@ -21,8 +21,6 @@ before_script:
   - sleep 5
 
 script:
- - mkdir -p build/logs
- - vendor/bin/phpunit --verbose --coverage-clover build/logs/clover.xml
- - bin/behat
-
-
+ #- mkdir -p build/logs
+ #- vendor/bin/phpunit --verbose --coverage-clover build/logs/clover.xml
+ - vendor/bin/behat
