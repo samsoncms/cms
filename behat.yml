@@ -20,6 +20,9 @@ travis:
       Behat\MinkExtension:
         base_url: http://test.local
 
-
+local:
+  extensions:
+    Behat\MinkExtension:
+      base_url: 'http://egorov.cms.local'
 
 
