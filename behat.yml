@@ -8,7 +8,6 @@ default:
     locale: en
   extensions:
     Behat\MinkExtension:
-      base_url: http://egorov.cms.local
       sessions:
         default:
           goutte: ~
