@@ -9,7 +9,6 @@ namespace samsoncms\config\travis;
 class ActiveRecordConfig extends \samsonphp\config\Entity
 {
     public $name = 'samsoncms.local';
-    public $login = 'samsonos';
-    public $pwd = 'AzUzrcVe4LJJre9f';
+    public $login = 'root';
 }
 
