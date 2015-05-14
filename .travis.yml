@@ -25,7 +25,7 @@ before_script:
   - sudo apt-get update > /dev/null
   - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql php5-intl
   - sudo sed -i -e "/DocumentRoot/i\ServerName test.local" /etc/apache2/sites-available/default
-  - echo "127.0.0.1 test.local" | sudo tee -a /etc/hosts
+  - echo "127.0.0.1 samsoncms.local" | sudo tee -a /etc/hosts
   - sudo a2enmod rewrite
   - sudo /etc/init.d/apache2 restart
   - phantomjs --webdriver=8643 &
