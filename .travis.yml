@@ -30,6 +30,7 @@ before_script:
   - sudo apt-get update > /dev/null
   - sudo apt-get install -y --force-yes apache2 libapache2-mod-fastcgi php5-curl php5-mysql
   - sudo a2enmod rewrite actions fastcgi alias
+  - sudo groupadd nobody
 
   # enable php-fpm
   - sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
