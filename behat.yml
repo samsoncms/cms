@@ -15,12 +15,11 @@ default:
         selenium2:
           selenium2:
             wd_host: "http://localhost:8643/wd/hub"
-imports:
-  - behat.local.yml
-
-phantomjs:
+travis:
   extensions:
-    Behat\MinkExtension:
-      base_url: 'http://test.local'
-      selenium2:
-        wd_host: "http://localhost:8643/wd/hub"
+      Behat\MinkExtension:
+        base_url: http://test.local
+
+
+
+
