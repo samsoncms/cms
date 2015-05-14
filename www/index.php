@@ -38,7 +38,7 @@ setlocales('en', 'ua', 'ru');
 
 // Start SamsonPHP application
 s()
-    ->environment('travis')
+    ->environment(isset($_ENV['ENVIRONMENT']) ? $_ENV['ENVIRONMENT'] : null)
     ->composer()
     ->subscribe('core.routing', array(url(),'router'));
 
