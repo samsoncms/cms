@@ -1,7 +1,7 @@
 Feature: SamsonCMS authorization
   In order to access SamsonCMS application
   As a visitor
-  I need to be able to log in to it
+  I need to be able to log in into it
 
   Scenario: Authorization page
     Given I am on "/signin"
