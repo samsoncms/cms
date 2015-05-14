@@ -22,7 +22,11 @@ mysql:
   encoding: utf8
 
 before_script:
-  - sh ./ci/install-apache.sh
+  - sudo cp $TRAVIS_BUILD_DIR/vhost.template /etc/nginx/sites-enabled/samsoncms.local
+  - sudo sed 's|APP_URLS|samsoncms.local|g;s|APP_PATH|/home/travis/build/EddyLane/DemoSubscriptionBundle|g;s|APP_NAME|samsoncms.local|g' /etc/nginx/sites-enabled/samsoncms.local --in-place
+
+  - sudo service nginx restart
+  - sudo service php5-fpm restart
 
   # Start phantomjs, do we need it?
   - phantomjs --webdriver=8643 &
