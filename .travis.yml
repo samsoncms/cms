@@ -8,7 +8,7 @@ php:
 
 addons:
   hosts:
-    - pollo.local
+    - samsoncms.local
 
 mysql:
   database: samsoncms
