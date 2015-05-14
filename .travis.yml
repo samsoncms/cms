@@ -22,6 +22,7 @@ mysql:
   encoding: utf8
 
 before_script:
+  - mysql -e 'create database samsoncms.local;'
   - sudo apt-get update
   - sudo apt-get install apache2 libapache2-mod-fastcgi
 
@@ -35,6 +36,7 @@ before_script:
   - sudo cp -f ci/travis-apache-vhost /etc/apache2/sites-available/default
   - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
   - sudo service apache2 restart
+
 
   # Start phantomjs
   - phantomjs --webdriver=8643 &
