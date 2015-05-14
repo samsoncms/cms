@@ -21,4 +21,17 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext
     public function __construct()
     {
     }
+
+    /**
+     * @Given /^I am logged in$/
+     */
+    public function iAmLoggedIn()
+    {
+        return array(
+            new Given('I am on "signup"'),
+            new Given('I fill in "email" with "test@test.com"'),
+            new Given('I fill in "password" with "123456"'),
+            new Given('I press "btn-signin"'),
+        );
+    }
 }
