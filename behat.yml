@@ -12,7 +12,7 @@ default:
 travis:
   extensions:
       Behat\MinkExtension:
-        base_url: http://samsoncms.local
+        base_url: 'http://samsoncms.local'
 
 local:
   extensions:
