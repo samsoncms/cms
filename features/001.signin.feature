@@ -5,8 +5,8 @@ Feature: SamsonCMS authorization
 
   Scenario: Authorization page
     Given I am on "/signin"
+    And print last response
     Then I should see 1 ".btn-lg" elements
-    Then print last response
 
   @javascript
   Scenario: Failed authorization
@@ -23,4 +23,5 @@ Feature: SamsonCMS authorization
     And I fill in "password" with "123"
     And I press "btn-signin"
     Then I should be on homepage
+    And I reset the session
 

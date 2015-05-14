@@ -23,6 +23,13 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext
     }
 
     /**
+     * @Given /^I reset the session$/
+     */
+    public function iResetTheSession() {
+        $this->getSession()->reset();
+    }
+
+    /**
      * @Given /^I am logged in$/
      */
     public function iAmLoggedIn()
