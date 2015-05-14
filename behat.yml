@@ -1,18 +1,13 @@
 # behat.yml
 default:
-  suites:
-    first:
-      mink_session: default
-      mink_javascript_session: selenium2
   translation:
     locale: en
   extensions:
     Behat\MinkExtension:
       sessions:
         default:
-          goutte: ~
-        selenium2:
           selenium2:
+            browser: phantomjs
             wd_host: "http://localhost:8643/wd/hub"
 travis:
   extensions:
