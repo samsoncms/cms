@@ -32,16 +32,16 @@ before_script:
   - sudo a2enmod rewrite actions fastcgi alias
 
   # enable php-fpm
-  #- sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
-  #- echo "cgi.fix_pathinfo = 1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  #- ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
+  - sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
+  - echo "cgi.fix_pathinfo = 1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
 
   # Add our local virtual host
   - sudo cp -f .travis-apache /etc/apache2/sites-available/default
   - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
   - sudo service apache2 restart
 
-  # Start phantom, do we need it?
+  # Start phantomjs, do we need it?
   - phantomjs --webdriver=8643 &
 
   # install dependencies
