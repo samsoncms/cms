@@ -4,6 +4,8 @@
  * @author Vitaly Iegorov <egorov@samsonos.com>
  */
 
+phpinfo();
+
 /** Set current directory as project root */
 if (!defined('__SAMSON_CWD__')) {
     define('__SAMSON_CWD__', dirname(__DIR__) . '/');
