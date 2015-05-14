@@ -1,4 +1,5 @@
 <VirtualHost *:80>
+  ServerName samsoncms.local
   DocumentRoot %TRAVIS_BUILD_DIR%/www
 
   <Directory "%TRAVIS_BUILD_DIR%/www">

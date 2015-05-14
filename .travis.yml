@@ -36,7 +36,7 @@ before_script:
   - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
   - sudo service apache2 restart
 
-  # Start phantomjs, do we need it?
+  # Start phantomjs
   - phantomjs --webdriver=8643 &
 
   # install dependencies
