@@ -32,8 +32,9 @@ before_script:
   - sudo a2enmod rewrite actions fastcgi alias
 
   # enable php-fpm
-  #- sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
-  #- echo "cgi.fix_pathinfo = 1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
+  - echo "cgi.fix_pathinfo = 1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - sudo service php5-fpm restart
   #- sudo ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
 
   # Add our local virtual host
