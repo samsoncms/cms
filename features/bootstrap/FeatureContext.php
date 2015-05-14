@@ -47,5 +47,6 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext
         $this->fillField('email', $arg1);
         $this->fillField('password', $arg2);
         $this->pressButton('btn-signin');
+        $this->getSession()->wait(2000);
     }
 }
