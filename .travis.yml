@@ -22,7 +22,7 @@ mysql:
   encoding: utf8
 
 before_script:
-  - sh ./ci/install-apache.sh
+  - sudo sh ./ci/install-apache.sh
 
   # Start phantomjs, do we need it?
   - phantomjs --webdriver=8643 &
