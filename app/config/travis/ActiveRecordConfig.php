@@ -8,7 +8,7 @@ namespace samsoncms\config\travis;
 /** Test ActiveRecord configuration for development */
 class ActiveRecordConfig extends \samsonphp\config\Entity
 {
-    public $name = 'samsoncms.local';
+    public $name = 'samsoncms';
     public $login = 'root';
 }
 
