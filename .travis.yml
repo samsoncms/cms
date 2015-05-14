@@ -37,7 +37,7 @@ before_script:
   - sudo service apache2 restart
 
   # Start phantomjs, do we need it?
-  - phantomjs --webdriver=8643 &
+  #- phantomjs --webdriver=8643 &
 
   # install dependencies
   - travis_retry composer self-update
