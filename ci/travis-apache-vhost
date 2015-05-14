@@ -2,6 +2,8 @@
   ServerName samsoncms.local
   DocumentRoot %TRAVIS_BUILD_DIR%/www
 
+  SetEnv APPLICATION_ENV    ${APPLICATION_ENV}
+
   <Directory "%TRAVIS_BUILD_DIR%/www">
     Options FollowSymLinks MultiViews ExecCGI
     AllowOverride All

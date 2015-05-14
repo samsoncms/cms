@@ -7,7 +7,7 @@ php:
   - hhvm
   - 7
 
-env: ENVIRONMENT=travis
+env: APPLICATION_ENV=travis
 
 matrix:
   allow_failures:
@@ -34,6 +34,9 @@ before_script:
   - echo "cgi.fix_pathinfo = 1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
 
+  # set application environment variable
+  - sudo sed -e 's/${APPLICATION_ENV}/'"$APPLICATION_ENV"'/g' --in-place /etc/apache2/sites-available/default
+
   # configure apache virtual hosts
   - sudo cp -f ci/travis-apache-vhost /etc/apache2/sites-available/default
   - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
@@ -44,7 +47,6 @@ before_script:
   - phantomjs --webdriver=8643 &
 
   # install dependencies
-  - travis_retry composer self-update
   - travis_retry composer install --prefer-source --no-interaction
 
 script:

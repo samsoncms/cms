@@ -40,7 +40,7 @@ var_dump($_ENV);
 
 // Start SamsonPHP application
 s()
-    ->environment(isset($_ENV['ENVIRONMENT']) ? $_ENV['ENVIRONMENT'] : null)
+    ->environment(isset($_ENV['APPLICATION_ENV']) ? $_ENV['APPLICATION_ENV'] : null)
     ->composer()
     ->subscribe('core.routing', array(url(),'router'));
 
