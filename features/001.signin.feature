@@ -6,6 +6,7 @@ Feature: SamsonCMS authorization
   Scenario: Authorization page
     Given I am on "/signin"
     Then I should see 1 ".btn-lg" elements
+    Then print last response
 
   @javascript
   Scenario: Failed authorization
