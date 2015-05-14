@@ -24,7 +24,7 @@ mysql:
   encoding: utf8
 
 before_script:
-  - mysql -e 'create database samsoncms.local;'
+  - mysql -e 'create database "samsoncms";'
   - sudo apt-get update
   - sudo apt-get install apache2 libapache2-mod-fastcgi
 
