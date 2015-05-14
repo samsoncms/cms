@@ -2,6 +2,7 @@
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Behat\Definition\Call\Given;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\MinkContext;
@@ -23,22 +24,28 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext
     }
 
     /**
-     * @Given /^I reset the session$/
+     * @Given /^I log out$/
      */
-    public function iResetTheSession() {
+    public function iLogOut() {
         $this->getSession()->reset();
     }
 
     /**
-     * @Given /^I am logged in$/
+     * @Given /^I wait for ajax response$/
      */
-    public function iAmLoggedIn()
+    public function iWaitForAjaxResponse()
     {
-        return array(
-            new Given('I am on "signup"'),
-            new Given('I fill in "email" with "test@test.com"'),
-            new Given('I fill in "password" with "123456"'),
-            new Given('I press "btn-signin"'),
-        );
+        $this->getSession()->wait(1000);
+    }
+
+    /**
+     * @Given I am logged in as :arg1 with :arg2
+     */
+    public function iAmLoggedInAsWith($arg1, $arg2)
+    {
+        $this->visit('/signin');
+        $this->fillField('email', $arg1);
+        $this->fillField('password', $arg2);
+        $this->pressButton('btn-signin');
     }
 }

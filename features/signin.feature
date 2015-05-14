@@ -14,6 +14,7 @@ Feature: SamsonCMS authorization
     When I fill in "email" with "test@test.com"
     And I fill in "password" with "123456"
     And I press "btn-signin"
+    And I wait for ajax response
     Then I should be on "/signin"
 
   @javascript
@@ -22,6 +23,11 @@ Feature: SamsonCMS authorization
     When I fill in "email" with "test@test.com"
     And I fill in "password" with "123"
     And I press "btn-signin"
+    And I wait for ajax response
     Then I should be on homepage
-    And I reset the session
+    And I log out
 
+  @javascript
+  Scenario: Test
+    Given I am logged in as "test@test.com" with "123"
+    Then I should be on the homepage
