@@ -36,11 +36,11 @@ if (file_exists('../../../app/config')) {
 // Set supported locales
 setlocales('en', 'ua', 'ru');
 
-var_dump($_ENV);
+var_dump(getenv('APPLICATION_ENV'));
 
 // Start SamsonPHP application
 s()
-    ->environment(isset($_ENV['APPLICATION_ENV']) ? $_ENV['APPLICATION_ENV'] : null)
+    ->environment(getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : null)
     ->composer()
     ->subscribe('core.routing', array(url(),'router'));
 
