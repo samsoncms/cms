@@ -4,6 +4,9 @@ cache:
   directories:
     - vendor
 
+before_cache:
+  - sudo rm -f vendor/samson*
+
 php:
   - 5.4
   - 5.5
@@ -29,7 +32,7 @@ mysql:
 
 before_script:
   - mysql -e 'create database samsoncms;'
-  - sudo apt-get update
+  #- sudo apt-get update
   - sudo apt-get install apache2 libapache2-mod-fastcgi
 
   # enable php-fpm
