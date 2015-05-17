@@ -116,7 +116,7 @@ script:
 
 after_failure:
   - sudo tail /var/log/apache2/error.log
-  - sudo tail /var/log/php5-fpm.log
+  - sudo tail /var/log/php-fpm.log
 
 after_script:
  # send result to scrutinizer
