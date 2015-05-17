@@ -15,7 +15,9 @@ php:
   - hhvm
   - 7
 
-env: APPLICATION_ENV=travis
+env:
+  global:
+    - APPLICATION_ENV=travis
 
 matrix:
   allow_failures:
