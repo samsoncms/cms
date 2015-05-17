@@ -20,8 +20,8 @@ Feature: SamsonCMS authorization
   @javascript
   Scenario: Successful authorization
     Given I am on "/signin"
-    When I fill in "email" with "test@test.com"
-    And I fill in "password" with "123"
+    When I fill in "email" with "admin@admin.com"
+    And I fill in "password" with "admin@admin.com"
     And I press "btn-signin"
     And I wait for ajax response
     Then I should be on homepage
@@ -29,5 +29,5 @@ Feature: SamsonCMS authorization
 
   @javascript
   Scenario: Test
-    Given I am logged in as "test@test.com" with "123"
+    Given I am logged in as "admin@admin.com" with "admin@admin.com"
     Then I should be on the homepage
