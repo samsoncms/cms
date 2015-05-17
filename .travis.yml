@@ -42,9 +42,8 @@ before_script:
   - ls
 
   # configure webserver
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' != 'hhvm' ]; then sudo ls; fi"
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' != 'hhvm' ]; then sudo ci/travis-apache.sh; fi"
-  - sh -c "if [ '$TRAVIS_PHP_VERSION' = 'hhvm' ]; then sudo ci/travis-hhvm.sh; fi"
+  - if [ '$TRAVIS_PHP_VERSION' != 'hhvm' ]; then ./ci/travis-apache.sh; fi
+  - if [ '$TRAVIS_PHP_VERSION' = 'hhvm' ]; then ./ci/travis-hhvm.sh; fi
 
   # rewrite path to www root folder
   - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
