@@ -19,7 +19,8 @@ build:
       -
         command: 'phantomjs --webdriver=8643'
         background: true
- dependencies:
+
+  dependencies:
     before:
        - mysql -uroot -e 'CREATE DATABASE samsoncms'
     environment:
