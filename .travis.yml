@@ -39,10 +39,13 @@ before_script:
   - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
 
   # set application environment variable
-  - sudo sed -e 's/${APPLICATION_ENV}/'"$APPLICATION_ENV"'/g' --in-place /etc/apache2/sites-available/default
+  - sudo sed -e "s?%APPLICATION_ENV%?$(APPLICATION_ENV)?g" --in-place /etc/apache2/sites-available/default
 
   # restart apache
   - sudo service apache2 restart
+
+  # import base SQL data
+  #- mysql ${DB_NAME} < tests/sql/init.sql
 
   # Start phantomjs
   - phantomjs --webdriver=8643 &
