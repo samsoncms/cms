@@ -59,6 +59,7 @@ build:
   dependencies:
     before:
        - mysql -uroot -e 'CREATE DATABASE samsoncms'
+       - export APPLICATION_ENV=scrutinizer
 
   environment:
     php:
