@@ -17,7 +17,7 @@ build:
   project_setup:
     before:
       -
-        command: phantomjs --webdriver=8643
+        command: 'phantomjs --webdriver=8643'
         background: true
  dependencies:
     before:
