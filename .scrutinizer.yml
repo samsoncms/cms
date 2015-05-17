@@ -63,7 +63,7 @@ build:
     php:
       version: 5.5
     variables:
-        APPLICATION_ENV:scrutinizer
+        - APPLICATION_ENV:scrutinizer
     hosts:
       samsoncms.local: '127.0.0.1'
     apache2:
