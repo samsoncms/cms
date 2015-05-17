@@ -64,41 +64,7 @@ before_script:
   # install dependencies
   - travis_retry composer install --prefer-source --no-interaction
   # run migrations
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-  - wget http://samsoncms.local
-
+  - wget http://samsoncms.local/orm/migrate
 
 script:
 #- bin/phpunit --coverage-clover=coverage.clover --coverage-text
