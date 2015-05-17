@@ -25,15 +25,14 @@ build:
        - mysql -uroot -e 'CREATE DATABASE samsoncms'
 
   environment:
-      php:
-          version: 5.5
-      hosts:
-          samsoncms.local: '127.0.0.1'
-
-      apache2:
-          modules: ['rewrite']
-          sites:
-              samsoncms:
-                  web_root: 'www/'
-                  host: 'samsoncms.local'
+    php:
+      version: 5.5
+    hosts:
+      samsoncms.local: '127.0.0.1'
+    apache2:
+      modules: ['rewrite']
+    sites:
+      samsoncms:
+        web_root: 'www/'
+        host: 'samsoncms.local'
 
