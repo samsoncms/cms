@@ -2,7 +2,7 @@ language: php
 
 cache:
   directories:
-  - vendor
+    - vendor
 
 php:
   - 5.4
