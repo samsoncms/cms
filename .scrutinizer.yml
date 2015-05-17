@@ -14,6 +14,10 @@ filter:
         - 'fixtures/*'
 
 build:
+ dependencies:
+    before:
+       - mysql -uroot -e 'CREATE DATABASE samsoncms'
+       - environment: { APPLICATION_ENV: 'scrutinizer' }
     environment:
         php:
             version: 5.5
