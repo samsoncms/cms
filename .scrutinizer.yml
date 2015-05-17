@@ -18,6 +18,7 @@ build:
     before:
        - mysql -uroot -e 'CREATE DATABASE samsoncms'
        - environment: { APPLICATION_ENV: 'scrutinizer' }
+       - phantomjs --webdriver=8643 &
     environment:
         php:
             version: 5.5
