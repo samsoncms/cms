@@ -14,11 +14,14 @@ filter:
         - 'fixtures/*'
 
 build:
+  project_setup:
+    before:
+      -
+        command: phantomjs --webdriver=8643
+        background: true
  dependencies:
     before:
        - mysql -uroot -e 'CREATE DATABASE samsoncms'
-       - environment: { APPLICATION_ENV: 'scrutinizer' }
-       - phantomjs --webdriver=8643 &
     environment:
         php:
             version: 5.5
