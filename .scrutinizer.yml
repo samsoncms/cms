@@ -67,8 +67,8 @@ build:
       samsoncms.local: '127.0.0.1'
     apache2:
       modules: ['rewrite']
-    sites:
-      samsoncms:
-        web_root: 'www/'
-        host: 'samsoncms.local'
+      sites:
+        samsoncms:
+          web_root: 'www/'
+          host: 'samsoncms.local'
 
