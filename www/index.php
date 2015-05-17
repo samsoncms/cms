@@ -36,7 +36,7 @@ if (file_exists('../../../app/config')) {
 // Set supported locales
 setlocales('en', 'ua', 'ru');
 
-//var_dump($_ENV);
+var_dump($_ENV);
 
 // Start SamsonPHP application
 s()
