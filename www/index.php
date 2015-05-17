@@ -46,7 +46,7 @@ s()
 
 /** Automatic external SamsonCMS Application searching  */
 if (file_exists('../../../src/')) {
-    // Get reource map to find all modules in src folder
+    // Get resource map to find all modules in src folder
     foreach(\samson\core\ResourceMap::get('../../../src/')->modules as $module) {
         // We are only interested in SamsonCMS application ancestors
         if (in_array('samson\cms\App', class_parents($module[2])) !== false) {
