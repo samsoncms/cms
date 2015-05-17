@@ -58,6 +58,9 @@ build:
   dependencies:
     before:
        - mysql -uroot -e 'CREATE DATABASE samsoncms'
+       - ls /etc/apache2/sites-available
+       - cat /etc/apache2/sites-available/000-default
+
 
   environment:
     php:
