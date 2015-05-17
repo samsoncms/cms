@@ -59,7 +59,7 @@ build:
     before:
        - mysql -uroot -e 'CREATE DATABASE samsoncms'
        - ls /etc/apache2/sites-available
-       - cat /etc/apache2/sites-available/000-default.conf
+       - cat /etc/apache2/sites-available/samsoncms-1733cc.conf
 
 
   environment:
