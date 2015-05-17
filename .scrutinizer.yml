@@ -55,15 +55,15 @@ build:
       - wget http://samsoncms.local
       - wget http://samsoncms.local
 
-
   dependencies:
     before:
        - mysql -uroot -e 'CREATE DATABASE samsoncms'
-       - export APPLICATION_ENV=scrutinizer
 
   environment:
     php:
       version: 5.5
+    variables:
+        APPLICATION_ENV:scrutinizer
     hosts:
       samsoncms.local: '127.0.0.1'
     apache2:
