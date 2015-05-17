@@ -116,7 +116,7 @@ script:
 
 after_failure:
   - sudo tail /var/log/apache2/error.log
-  - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then tail ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf; fi
+  - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then tail ~/.phpenv/versions/$(phpenv version-name)/var/log/php-fpm.log; fi
 
 after_script:
  # send result to scrutinizer
