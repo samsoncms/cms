@@ -70,7 +70,6 @@ build:
       modules: ['rewrite']
       sites:
         samsoncms:
-          environment: {APPLICATION_ENV:'scrutinizer'}
           web_root: 'www/'
           host: 'samsoncms.local'
 
