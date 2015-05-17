@@ -39,6 +39,7 @@ before_script:
   # install apache
   - sudo apt-get install apache2 libapache2-mod-fastcgi
   - sudo a2enmod rewrite actions fastcgi alias
+  - echo $TRAVIS_PHP_VERSION
 
   # configure apache for php-fpm
   - if [ '$TRAVIS_PHP_VERSION' != 'hhvm' ]; then sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf; fi
@@ -114,3 +115,6 @@ after_script:
  # send result to scrutinizer
  - wget https://scrutinizer-ci.com/ocular.phar
  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+
+after_failure:
+  - sudo tail /var/log/apache2/error.log
