@@ -34,18 +34,17 @@ mysql:
   encoding: utf8
 
 before_script:
-  - mysql -e 'create database samsoncms;'
   - sudo apt-get update
+
+  # install apache
   - sudo apt-get install apache2 libapache2-mod-fastcgi
-
-  # enable php-fpm
-  - sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
   - sudo a2enmod rewrite actions fastcgi alias
-  - echo "cgi.fix_pathinfo = 1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  - ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
 
-  # configure apache virtual hosts
-  - sudo cp -f ci/travis-apache-vhost /etc/apache2/sites-available/default
+  # configure webserver
+  - sh -c "if [ '$TRAVIS_PHP_VERSION' != 'hhvm' ]; then ./ci/travis-apache.sh; fi"
+  - sh -c "if [ '$TRAVIS_PHP_VERSION' = 'hhvm' ]; then ./ci/travis-hhvm.sh; fi"
+
+  # rewrite path to www root folder
   - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
 
   # set application environment variable
@@ -56,6 +55,7 @@ before_script:
   - sudo service apache2 restart
 
   # import base SQL data
+  - mysql -e 'create database samsoncms;'
   #- mysql ${DB_NAME} < tests/sql/init.sql
 
   # Start phantomjs
