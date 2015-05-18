@@ -1,5 +1,4 @@
 <?php
-namespace samsoncms;
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
