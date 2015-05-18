@@ -29,9 +29,7 @@
     "behat/behat": "3.*@stable",
     "behat/mink": "1.6.*@stable",
     "behat/mink-extension": "@stable",
-    "behat/mink-goutte-driver": "@stable",
-    "behat/mink-selenium2-driver": "@stable",
-    "behat/mink-zombie-driver" : "@stable"
+    "behat/mink-selenium2-driver": "@stable"
   },
   "license": "Open Software License (OSL) v 3.0",
   "homepage": "http://samsoncms.com/",
