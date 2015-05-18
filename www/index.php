@@ -8,7 +8,17 @@
 //define('DEFAULT_LOCALE', 'ru');
 
 /** Require composer autoloader */
-require_once('../vendor/autoload.php');
+if (file_exists('../vendor/autoload.php')) {
+    require_once('../vendor/autoload.php');
+} else if (file_exists('../../../vendor/autoload.php')) {
+    /*
+     * This is special situation when SamsonCMS application is installed as
+     * a dependency for automated module testing
+     */
+    require_once('../../../vendor/autoload.php');
+} else {
+    die('Composer dependencies are not installed, run "composer install"');
+}
 
 /** Automatic parent web-application configuration read */
 if (file_exists('../../../app/config')) {
