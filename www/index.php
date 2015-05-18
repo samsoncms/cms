@@ -10,12 +10,12 @@
 /** Require composer autoloader */
 if (file_exists('../vendor/autoload.php')) {
     require_once('../vendor/autoload.php');
-} else if (file_exists('../../../vendor/autoload.php')) {
+} else if (file_exists('../../../autoload.php')) {
     /*
      * This is special situation when SamsonCMS application is installed as
      * a dependency for automated module testing
      */
-    require_once('../../../vendor/autoload.php');
+    require_once('../../../autoload.php');
 } else {
     die('Composer dependencies are not installed, run "composer install"');
 }
