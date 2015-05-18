@@ -1,5 +1,9 @@
 # behat.yml
 default:
+  suites:
+    default:
+      contexts:
+        - SamsonCMSFeatureContext
   translation:
     locale: en
   extensions:
