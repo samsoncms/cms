@@ -14,7 +14,7 @@ require_once('../vendor/autoload.php');
 if (file_exists('../../../app/config')) {
     /** Special constant to disable local ActiveRecord configuration */
     define('EXTERNAL_CONFIG', true);
-    // Signal core configure event
+    // Signal core configure event with pathes to parent application configuration folder instead of local one
     \samsonphp\event\Event::signal('core.configure', array('../../../'.__SAMSON_CONFIG_PATH, __SAMSON_PUBLIC_PATH.__SAMSON_BASE__));
 }
 
