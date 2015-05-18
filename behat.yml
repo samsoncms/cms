@@ -1,11 +1,5 @@
 # behat.yml
 default:
-  autoload:
-    - %paths.base%/features/bootstrap/
-  suites:
-    default:
-      contexts:
-        - SamsonCMSFeatureContext
   translation:
     locale: en
   extensions:
