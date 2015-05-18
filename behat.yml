@@ -1,5 +1,9 @@
 # behat.yml
 default:
+  suites:
+    default:
+      contexts:
+        - SamsonCMSContext
   translation:
     locale: en
   extensions:
