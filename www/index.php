@@ -15,6 +15,7 @@ if (file_exists('../vendor/autoload.php')) {
      * This is special situation when SamsonCMS application is installed as
      * a dependency for automated module testing
      */
+    define('MODULE_TESTS', true);
     require_once('../../../autoload.php');
 } else {
     die('Composer dependencies are not installed, run "composer install"');
@@ -34,7 +35,7 @@ setlocales('en', 'ua', 'ru');
 // Start SamsonPHP application
 s()
     ->environment(getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : null)
-    ->composer()
+    ->composer(defined('MODULE_TESTS') ? '../../../../' : null)
     ->subscribe('core.routing', array(url(),'router'));
 
 /** Automatic external SamsonCMS Application searching  */
