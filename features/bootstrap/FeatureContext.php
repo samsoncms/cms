@@ -1,4 +1,5 @@
 <?php
+namespace samsoncms;
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
@@ -10,7 +11,7 @@ use Behat\MinkExtension\Context\MinkContext;
 /**
  * Defines application features from the specific context.
  */
-class SamsonCMSContext extends MinkContext implements SnippetAcceptingContext
+class FeatureContext extends MinkContext implements SnippetAcceptingContext
 {
     /**
      * Initializes context.
