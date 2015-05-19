@@ -35,5 +35,6 @@
   "homepage": "http://samsoncms.com/",
   "config":{
     "github-protocols":["https"]
-  }
+  },
+  "extra": { "samson_module_ignore": "1" }
 }
