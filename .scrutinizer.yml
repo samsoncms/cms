@@ -58,9 +58,8 @@ build:
   dependencies:
     before:
        - mysql -uroot -e 'CREATE DATABASE samsoncms'
-       - ls /etc/apache2/sites-available
-       - cat /etc/apache2/sites-available/samsoncms-1733cc.conf
-
+       - mysql -uroot -e "CREATE USER 'samsonos'@'localhost' IDENTIFIED BY 'AzUzrcVe4LJJre9f'";
+       - mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'samsonos'@'localhost' WITH GRANT OPTION";
 
   environment:
     php:
