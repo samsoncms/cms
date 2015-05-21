@@ -7,16 +7,19 @@
 /** Set default locale */
 //define('DEFAULT_LOCALE', 'ru');
 
+/** Set current directory as project root */
+if (!defined('__SAMSON_CWD__')) {
+    define('__SAMSON_CWD__', dirname(__DIR__) . '/');
+}
+
+/** Set current directory url base */
+if (!defined('__SAMSON_BASE__') && strlen(__DIR__) > strlen($_SERVER['DOCUMENT_ROOT'])) {
+    define('__SAMSON_BASE__', '/'.basename(__SAMSON_CWD__) . '/');
+}
+
 /** Require composer autoloader */
 if (file_exists('../vendor/autoload.php')) {
     require_once('../vendor/autoload.php');
-} else if (file_exists('../../../autoload.php')) {
-    /*
-     * This is special situation when SamsonCMS application is installed as
-     * a dependency for automated module testing
-     */
-    define('MODULE_TESTS', true);
-    require_once('../../../autoload.php');
 } else {
     die('Composer dependencies are not installed, run "composer install"');
 }
@@ -35,7 +38,7 @@ setlocales('en', 'ua', 'ru');
 // Start SamsonPHP application
 s()
     ->environment(getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : null)
-    ->composer(defined('MODULE_TESTS') ? '../../../../' : null)
+    ->composer()
     ->subscribe('core.routing', array(url(),'router'));
 
 /** Automatic external SamsonCMS Application searching  */
