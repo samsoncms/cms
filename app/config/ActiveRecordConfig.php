@@ -10,8 +10,8 @@ if (!defined('EXTERNAL_CONFIG')) {
     /** Test ActiveRecord configuration for development */
     class ActiveRecordConfig extends \samsonphp\config\Entity
     {
-        public $name = 'samsonos.com';
-        public $login = 'root';
-        public $pwd = 'Vovan2912';
+        public $name = 'samsoncms';
+        public $login = 'samsoncms';
+        public $pwd = 'samsoncms';
     }
 }
