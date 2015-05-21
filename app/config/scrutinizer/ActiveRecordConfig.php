@@ -9,6 +9,6 @@ namespace samsoncms\config\scrutinizer;
 class ActiveRecordConfig extends \samsonphp\config\Entity
 {
     public $name = 'samsoncms';
-    public $login = 'root';
+    public $login = 'samsoncms';
 }
 
