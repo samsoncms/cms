@@ -59,7 +59,7 @@ build:
   dependencies:
     before:
        - mysql -uroot -e 'CREATE DATABASE samsoncms'
-       - mysql -uroot -e "CREATE USER 'samsoncms'@'localhost' IDENTIFIED BY 'AzUzrcVe4LJJre9f'";
+       - mysql -uroot -e "CREATE USER 'samsoncms'@'localhost' IDENTIFIED BY 'samsoncms'";
        - mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'samsoncms'@'localhost' WITH GRANT OPTION";
 
   environment:
