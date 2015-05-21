@@ -77,6 +77,6 @@ build:
           host: 'samsoncms.local'
 
   tests:
-    ovveride:
+    override:
       - 'vendor/bin/behat -p scrutinizer'
 
