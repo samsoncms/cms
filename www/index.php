@@ -7,16 +7,6 @@
 /** Set default locale */
 //define('DEFAULT_LOCALE', 'ru');
 
-/** Set current directory as project root */
-if (!defined('__SAMSON_CWD__')) {
-    define('__SAMSON_CWD__', dirname(__DIR__) . '/');
-}
-
-/** Set current directory url base */
-if (!defined('__SAMSON_BASE__') && strlen(__DIR__) > strlen($_SERVER['DOCUMENT_ROOT'])) {
-    define('__SAMSON_BASE__', '/'.basename(__SAMSON_CWD__) . '/');
-}
-
 /** Require composer autoloader */
 if (file_exists('../vendor/autoload.php')) {
     require_once('../vendor/autoload.php');
