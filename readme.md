@@ -15,6 +15,7 @@
 * After you should configure your web-server document root to ```[your_path]/www``` 
 * Create a folder ```[your_path]/www/cache``` with writing rights to web-server process
 
+
 ##Roadmap
 * Give ability to easily change theme and design in SamsonCMS and its modules.
 * Add symfony2 support
