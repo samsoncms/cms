@@ -4,6 +4,10 @@ default:
     '': %paths.base%/ci/features/bootstrap
   translation:
     locale: en
+  suites:
+    default:
+      paths:
+        - %paths.base%/ci/features
   extensions:
     Behat\MinkExtension:
       sessions:
