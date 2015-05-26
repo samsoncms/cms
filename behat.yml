@@ -1,5 +1,10 @@
 # behat.yml
 default:
+  suites:
+      paths:
+        - %paths.base%/ci/features
+        #- %paths.base%/test/features
+        #- %paths.base%/vendor/.../features
   translation:
     locale: en
   extensions:
