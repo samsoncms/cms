@@ -1,11 +1,7 @@
 # behat.yml
 default:
-  suites:
-    default:
-      paths:
-        - %paths.base%/ci/features
-        #- %paths.base%/test/features
-        #- %paths.base%/vendor/.../features
+  autoload:
+    '': %paths.base%/ci/features/bootstrap
   translation:
     locale: en
   extensions:
