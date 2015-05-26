@@ -1,8 +1,5 @@
 # behat.yml
 default:
-  paths:
-    features: ci/features
-    bootstrap: %behat.paths.features%/bootstrap
   translation:
     locale: en
   extensions:
