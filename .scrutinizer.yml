@@ -10,8 +10,9 @@ tools:
 
 filter:
     excluded_paths:
-        - 'tests/*'
+        - 'ci/*'
         - 'features/*'
+        - 'tests/*'
         - 'fixtures/*'
 
 build:
