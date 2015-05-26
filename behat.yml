@@ -1,6 +1,7 @@
 # behat.yml
 default:
   suites:
+    default:
       paths:
         - %paths.base%/ci/features
         #- %paths.base%/test/features
