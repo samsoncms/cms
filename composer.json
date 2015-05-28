@@ -36,5 +36,15 @@
   "config":{
     "github-protocols":["https"]
   },
-  "extra": { "samson_module_ignore": "1" }
+  "scripts": {
+    "post-install-cmd": [
+      "mkdir www/cache",
+      "chmod 0777 www/cache"
+    ],
+    "post-update-cmd": [
+      "rm -R www/cache",
+      "mkdir www/cache",
+      "chmod 0777 www/cache"
+    ]
+  }
 }
