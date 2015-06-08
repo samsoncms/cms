@@ -2,8 +2,6 @@
 
 [![Latest Stable Version](https://poser.pugx.org/samsoncms/cms/v/stable.svg)](https://packagist.org/packages/samsoncms/cms)
 [![Build Status](https://scrutinizer-ci.com/g/samsoncms/cms/badges/build.png?b=master)](https://scrutinizer-ci.com/g/samsoncms/cms/build-status/master)
-[![Code Coverage](https://scrutinizer-ci.com/g/samsoncms/cms/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/samsoncms/cms/?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/samsoncms/cms/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/samsoncms/cms/?branch=master) 
 [![Total Downloads](https://poser.pugx.org/samsoncms/cms/downloads.svg)](https://packagist.org/packages/samsoncms/cms)
 [![Stories in Ready](https://badge.waffle.io/samsoncms/cms.png?label=ready&title=Ready)](https://waffle.io/samsoncms/cms)
 
