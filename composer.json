@@ -20,6 +20,7 @@
     "samsoncms/help":"*",
     "samsoncms/user":"*",
     "samsoncms/signin":"*",
+    "samsoncms/security":"*",
     "samsonos/cms_app_navigation":"*",
     "samsonos/cms_app_field":"*",
     "samsonos/cms_app_gallery":"*",
