@@ -17,7 +17,7 @@ function oldMainRenderer(&$html)
     // Render application main page block
     foreach (\samsoncms\Application::loaded() as $app) {
         // Show only visible apps
-        if ($app->hide == false) {
+        if ($app->hide == false && $app->findView('sub_menu')) {
             $html .= $app->main();
         }
     }
