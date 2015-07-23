@@ -2,7 +2,7 @@
 <html lang="<?php echo locale()?>">
 
     <head>
-        <title><?php isv('title', 'title', m('local')->title)?> - SamsonCMS</title>
+        <title><?php echo oldGetTitle() ?> - SamsonCMS</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="icon" type="image/png" href="favicon.png">
         <?php m('i18n')->render('meta')?>
