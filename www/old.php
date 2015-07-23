@@ -54,6 +54,18 @@ function oldMenuRenderer(&$html, &$subMenu)
     }
 }
 
+/**
+ * @deprecated
+ * @return string Page title
+ */
+function oldGetTitle()
+{
+    $local = m('local');
+    $current = m();
+    return isset($current['title']) ? $current['title'] :
+        (isset($local['title']) ? $local['title'] : '');
+}
+
 // Old applications main page rendering
 \samsonphp\event\Event::subscribe('template.main.rendered', 'oldMainRenderer');
 // Old applications menu rendering
