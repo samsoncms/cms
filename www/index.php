@@ -35,6 +35,8 @@ s()
 if (file_exists('../../../src/')) {
     // Get resource map to find all modules in src folder
     foreach(\samson\core\ResourceMap::get('../../../src/')->modules as $module) {
+        // There are situations when SamsonCMS application ar not direct samsoncms\application ancestors
+        require_once($module[1]);
         // We are only interested in SamsonCMS application ancestors
         if (in_array('samsoncms\Application', class_parents($module[2])) !== false) {
             // Remove possible '/src/' path from module path
