@@ -19,7 +19,7 @@
     "samsoncms/material":"*",
     "samsoncms/user":"*",
     "samsoncms/signin":"*",
-    "samsoncms/seo_tags":"*",
+    "samsoncms/seo":"*",
     "samsoncms/security":"*",
     "samsonos/cms_app_navigation":"*",
     "samsonos/cms_app_field":"*",
