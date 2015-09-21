@@ -10,8 +10,7 @@
 ##Installation 
 * First of all you must get working [Composer](http://getcomposer.org).
 * Use ```php composer.phar create-project --prefer-dist -s dev samsoncms/cms [your_path]``` for automatic installation of SamsonCMS and all of its dependencies.
-* After you should configure your web-server document root to ```[your_path]/www``` 
-* Create a folder ```[your_path]/www/cache``` with writing rights to web-server process
+* Configure your web-server document root to ```[your_path]/www``` 
 
 
 ##Roadmap
