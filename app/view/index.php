@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?php echo locale()?>">
+<html>
 
     <head>
         <title><?php echo oldGetTitle() ?> - SamsonCMS</title>
