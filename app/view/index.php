@@ -13,6 +13,7 @@
         <section id="template-container">
             <?php m()->render()?>
         </section>
+        <div id="loader-text" style="display: none"><?php t('Загрузка формы') ?></div>
     </body>
 
 </html>
