@@ -9,7 +9,14 @@
 
 ##Installation 
 * First of all you must get working [Composer](http://getcomposer.org).
-* Use ```php composer.phar create-project --prefer-dist -s dev samsoncms/cms [your_path]``` for automatic installation of SamsonCMS and all of its dependencies.
+* Automatic installation of SamsonCMS and all of its dependencies:
+```shell
+php composer.phar create-project --prefer-dist -s dev samsoncms/cms [your_path]
+``` 
+* If you have installed composer globally you should use: 
+```shell
+composer create-project --prefer-dist -s dev SamsonPHP/bootstrap [your_path]
+```
 * Configure your web-server document root to ```[your_path]/www``` 
 
 
