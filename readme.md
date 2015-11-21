@@ -15,7 +15,7 @@ php composer.phar create-project --prefer-dist -s dev samsoncms/cms [your_path]
 ``` 
 * If you have installed composer globally you should use: 
 ```shell
-composer create-project --prefer-dist -s dev SamsonPHP/bootstrap [your_path]
+composer create-project --prefer-dist -s dev samsoncms/cms [your_path]
 ```
 * Configure your web-server document root to ```[your_path]/www``` 
 
