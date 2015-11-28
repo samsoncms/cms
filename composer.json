@@ -8,7 +8,7 @@
     }
   ],
   "minimum-stability": "dev",
-  "require-dev": {
+  "require": {
     "samsoncms/material":"*",
     "samsoncms/user":"*",
     "samsoncms/seo":"*",
