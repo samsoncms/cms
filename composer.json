@@ -8,44 +8,20 @@
     }
   ],
   "minimum-stability": "dev",
-  "require": {
-    "samsonframework/base": "*",
-    "samsonframework/collection": "*",
-    "samsonframework/orm": "*",
-    "aws/aws-sdk-php": "2.*"
-  },
   "require-dev": {
-    "samsonphp/fs_aws":"*",
     "samsoncms/material":"*",
     "samsoncms/user":"*",
-    "samsoncms/signin":"*",
     "samsoncms/seo":"*",
-    "samsoncms/security":"*",
     "samsonos/cms_app_navigation":"*",
     "samsonos/cms_app_field":"*",
     "samsonos/cms_app_gallery":"*",
     "samsonos/cms_app_relatedmaterial":"*",
     "samsonos/cms_app_materialtable":"*",
-    "samsonos/cms_input_material":"*",
-    "behat/behat": "3.*@stable",
-    "behat/mink": "1.6.*@stable",
-    "behat/mink-extension": "@stable",
-    "behat/mink-selenium2-driver": "@stable"
+    "samsonos/cms_input_material":"*"
   },
   "license": "Open Software License (OSL) v 3.0",
   "homepage": "http://samsoncms.com/",
   "config":{
     "github-protocols":["https"]
-  },
-  "scripts": {
-    "post-install-cmd": [
-      "mkdir www/cache",
-      "chmod 0777 www/cache"
-    ],
-    "post-update-cmd": [
-      "rm -R www/cache",
-      "mkdir www/cache",
-      "chmod 0777 www/cache"
-    ]
   }
 }
