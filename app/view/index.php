@@ -2,7 +2,7 @@
 <html>
 
     <head>
-        <title> - SamsonCMS</title>
+        <title><?php m('cms')->oldGetTitle()?> - SamsonCMS</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="icon" type="image/png" href="favicon.png">
     </head>
