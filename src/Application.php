@@ -16,6 +16,11 @@ class Application extends CompressableExternalModule {
 
     protected $isCMS = false;
 
+    public function isCMS()
+    {
+        return $this->isCMS;
+    }
+
     public function init( array $params = array() ) {
         Event::subscribe('core.security', array($this, 'updateTemplate'));
         // Old applications main page rendering
@@ -75,7 +80,8 @@ class Application extends CompressableExternalModule {
 
     public function __base()
     {
-        s()->active(m('template'));
+        $this->active(m('template'));
+
         m('template')->__handler();
     }
 
@@ -89,6 +95,7 @@ class Application extends CompressableExternalModule {
             }
         }
     }
+
     /**
      * @deprecated All application should draw menu block via events
      */
@@ -117,6 +124,7 @@ class Application extends CompressableExternalModule {
             }
         }
     }
+
     /**
      * @deprecated
      * @return string Page title
