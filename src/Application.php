@@ -11,10 +11,10 @@ use samsonphp\router\Module;
  */
 class Application extends CompressableExternalModule
 {
+    const EVENT_IS_CMS = 'samsonsms.is.cms';
+
     /** @var string Module identifier */
     public $id = 'cms';
-
-    public $baseUrl = 'cms';
 
     /** @var bool Flag that currently we are woring in SamsonCMS */
     protected $isCMS = false;
@@ -56,6 +56,11 @@ class Application extends CompressableExternalModule
         return parent::init($params);
     }
 
+    public function isCMS()
+    {
+        return $this->isCMS;
+    }
+
     public function activeModuleHandler($module)
     {
         // Define if routed module is related to SamsonCMS
@@ -65,6 +70,8 @@ class Application extends CompressableExternalModule
 
             // Switch template to SamsonCMS
             $this->system->template($this->path() . 'app/view/index.php', true);
+
+            Event::fire(self::EVENT_IS_CMS, array(&$this));
         }
     }
 
@@ -77,14 +84,14 @@ class Application extends CompressableExternalModule
     public function updateCMSPrefix($module, &$prefix)
     {
         if (($module->id != $this->id) && $this->ifModuleRelated($module)) {
-            $prefix = '/' . $this->baseUrl . $prefix;
+            $prefix = '/' . $this->id . $prefix;
         }
     }
 
     public function buildUrl(&$urlObj, &$httpHost, &$urlParams)
     {
         if ($this->isCMS) {
-            array_unshift($urlParams, $this->baseUrl);
+            array_unshift($urlParams, $this->id);
         }
     }
 
