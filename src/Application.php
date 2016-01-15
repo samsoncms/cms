@@ -1,88 +1,122 @@
-<?php 
+<?php
 namespace samsoncms\cms;
 
-use samson\activerecord\dbQuery;
 use samson\core\CompressableExternalModule;
-use samson\pager\Pager;
 use samsonphp\event\Event;
+use samsonphp\router\Module;
 
 /**
  * SamsonCMS external compressible application for integrating
  * @author Vitaly Iegorov <egorov@samsonos.com>
  */
-class Application extends CompressableExternalModule {
+class Application extends CompressableExternalModule
+{
     /** @var string Module identifier */
-    protected $id = 'cms';
+    public $id = 'cms';
 
+    /** @var bool Flag that currently we are woring in SamsonCMS */
     protected $isCMS = false;
 
-    public function isCMS()
+    public function init(array $params = array())
     {
-        return $this->isCMS;
-    }
-
-    public function init( array $params = array() ) {
-        Event::subscribe('core.security', array($this, 'updateTemplate'));
+        //trace('cmsInit');
         // Old applications main page rendering
         Event::subscribe('template.main.rendered', array($this, 'oldMainRenderer'));
         // Old applications menu rendering
         Event::subscribe('template.menu.rendered', array($this, 'oldMenuRenderer'));
 
         Event::subscribe('samson.url.build', array($this, 'buildUrl'));
-        // Call parent initialization
-        return parent::init( $params );
-    }
 
-    public function buildUrl(& $urlObj, & $httpHost, & $urlParams)
-    {
-        $index = 0;
-        if (isset($urlParams[$index]) && (\samson\core\SamsonLocale::current() == $urlParams[$index])) {
-            $index = 1;
-        }
-        if ( isset( $urlParams[$index] ) && ( strpos($urlParams[$index], 'cms-') === 0 ) ) {
-            $urlParams[$index] = str_replace('cms-', '', $urlParams[$index]);
-            array_unshift($urlParams, 'cms');
-        }
-    }
+        Event::subscribe('samson.url.args.created', array($this, 'parseUrl'));
 
-    public function updateTemplate($core, $securityResult) {
-        if ($this->isCMS) {
-            $core->template($this->path().'app/view/index.php', true);
-        }
-    }
+        Event::subscribe(Module::EVENT_ROUTE_FOUND, array($this, 'activeModuleHandler'));
 
-    public function initUrl( & $urlObj, & $urlArgs ) {
-        if($urlArgs[0] == 'cms') {
-            $this->isCMS = true;
-            if (isset($urlArgs[1])) {
-                if (strpos($urlArgs[1], 'samsoncms_') !== 0){
-                    $urlArgs[1] = 'cms-'.$urlArgs[1];
+        Event::subscribe('samsonphp.router.create.module.routes', array($this, 'updateCMSPrefix'));
+
+        //[PHPCOMPRESSOR(remove,start)]
+        $moduleList   = $this->system->module_stack;
+        foreach ($this->system->module_stack as $id => $module) {
+            if ( ! (isset($module->composerParameters['composerName']) &&
+                    isset($this->composerParameters['required']) &&
+                    in_array($module->composerParameters['composerName'], $this->composerParameters['required']))
+            ) {
+                if ($id != 'core') {
+                    unset($moduleList[$id]);
                 }
-                unset($urlArgs[0]);
-                $urlArgs = array_values($urlArgs);
             }
+        }
+
+        // Generate resources for new module
+        $this->system->module('resourcer')->generateResources($moduleList, $this->path() . 'app/view/index.php');
+        //[PHPCOMPRESSOR(remove,end)]
+
+        // Call parent initialization
+        return parent::init($params);
+    }
+
+    public function activeModuleHandler($module)
+    {
+        // Define if routed module is related to SamsonCMS
+        if($this->isCMS = $this->ifModuleRelated($module)){
+            // TODO: This should be removed - Reparse url
+            url()->parse();
+
+            // Switch template to SamsonCMS
+            $this->system->template($this->path() . 'app/view/index.php', true);
+            trace('CMS!');
         }
     }
 
-    public function initResources(& $resourceRouter, $moduleId, & $approve)
+    /**
+     * Callback for adding SamsonCMS related modules prefix to routes.
+     *
+     * @param $module
+     * @param $prefix
+     */
+    public function updateCMSPrefix($module, &$prefix)
     {
-        if ($moduleId == 'core') return true;
-        if ($this->isCMS) {
-            $approve = false;
-            if (isset(m($moduleId)->composerParameters['composerName'])&&
-                isset(m('cms')->composerParameters['required'])&&
-                in_array(m($moduleId)->composerParameters['composerName'], m('cms')->composerParameters['required'])){
-                $approve = true;
-            }
+        if (($module->id != $this->id) && $this->ifModuleRelated($module)) {
+            $prefix = '/' . $this->id . $prefix;
         }
+    }
 
+    public function buildUrl(&$urlObj, &$httpHost, &$urlParams)
+    {
+        if ($this->isCMS) {
+            array_unshift($urlParams, $this->id);
+        }
+    }
+
+    public function parseUrl(&$urlObj, &$urlArgs)
+    {
+        if ($this->isCMS) {
+            array_shift($urlArgs);
+        }
+    }
+
+    /**
+     * Check if passed module is related to SamsonCMS.
+     * Also method stores data to flag variable.
+     *
+     * @param $module
+     *
+     * @return bool True if module related to SamsonCMS
+     */
+    public function ifModuleRelated($module)
+    {
+        // Analyze if module class or one of its parents has samsoncms\ namespace pattern
+        return sizeof(preg_grep('/samsoncms\\\\/i', array_merge(array(get_class($module)), class_parents($module))));
     }
 
     public function __base()
     {
-        $this->active(m('template'));
+        $templateModule = $this->system->module('template');
 
-        m('template')->__handler();
+        // Switch system to SamsonCMS template module
+        $this->system->active($templateModule);
+
+        // Call template handler
+        $templateModule->__handler();
     }
 
     public function oldMainRenderer(&$html)
@@ -131,8 +165,9 @@ class Application extends CompressableExternalModule {
      */
     public function oldGetTitle()
     {
-        $local = m('local');
+        $local   = m('local');
         $current = m();
+
         return isset($current['title']) ? $current['title'] :
             (isset($local['title']) ? $local['title'] : '');
     }
