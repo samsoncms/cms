@@ -38,13 +38,8 @@ class Application extends CompressableExternalModule
         //[PHPCOMPRESSOR(remove,start)]
         $moduleList   = $this->system->module_stack;
         foreach ($this->system->module_stack as $id => $module) {
-            if ( ! (isset($module->composerParameters['composerName']) &&
-                    isset($this->composerParameters['required']) &&
-                    in_array($module->composerParameters['composerName'], $this->composerParameters['required']))
-            ) {
-                if ($id != 'core') {
-                    unset($moduleList[$id]);
-                }
+            if (!$this->isModuleDependent($module) && $id != 'core' && !$this->ifModuleRelated($module)) {
+                unset($moduleList[$id]);
             }
         }
 
@@ -54,6 +49,17 @@ class Application extends CompressableExternalModule
 
         // Call parent initialization
         return parent::init($params);
+    }
+
+    /**
+     * If module is dependent from current module through composer.json.
+     *
+     * @param $module Module for checking
+     * @return bool True if module dependent
+     */
+    protected function isModuleDependent($module)
+    {
+        return isset($module->composerParameters['composerName']) && in_array($module->composerParameters['composerName'], $this->composerParameters['required']);
     }
 
     public function isCMS()
