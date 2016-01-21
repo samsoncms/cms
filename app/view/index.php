@@ -7,7 +7,7 @@
         <link rel="icon" type="image/png" href="favicon.png">
     </head>
 
-    <body id="<?php v('id')?>">
+    <body id="<?php v('id')?>" class="samsoncms">
         <?php m('template')->render('menu')?>
 
         <section id="template-container">
