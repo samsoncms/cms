@@ -16,6 +16,8 @@ class Application extends CompressableExternalModule
     /** @var string Module identifier */
     public $id = 'cms';
 
+    public $baseUrl = 'cms';
+
     /** @var bool Flag that currently we are woring in SamsonCMS */
     protected $isCMS = false;
 
@@ -90,14 +92,14 @@ class Application extends CompressableExternalModule
     public function updateCMSPrefix($module, &$prefix)
     {
         if (($module->id != $this->id) && $this->ifModuleRelated($module)) {
-            $prefix = '/' . $this->id . $prefix;
+            $prefix = '/' . $this->baseUrl . $prefix;
         }
     }
 
     public function buildUrl(&$urlObj, &$httpHost, &$urlParams)
     {
         if ($this->isCMS) {
-            array_unshift($urlParams, $this->id);
+            array_unshift($urlParams, $this->baseUrl);
         }
     }
 
