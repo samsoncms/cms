@@ -170,7 +170,7 @@ class Application extends CompressableExternalModule
         if (\samsoncms\Application::find(url()->module, $app/*@var $app App*/)) {
             // If module has sub_menu view - render it
             if ($app->findView('sub_menu')) {
-                $subMenu .= $app->view('sub_menu')->appName(t($app->name, true))->output();
+                $subMenu .= $app->view('sub_menu')->set(t($app->name, true), 'appName')->output();
             }
         }
     }
