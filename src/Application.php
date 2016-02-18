@@ -140,7 +140,7 @@ class Application extends CompressableExternalModule
         // Render application main page block
         foreach (\samsoncms\Application::loaded() as $app) {
             // Show only visible apps
-            if ($app->hide == false && $app->findView('sub_menu')) {
+            if ($app->hide == false /*&& $app->findView('sub_menu')*/) {
                 $html .= $app->main();
             }
         }
