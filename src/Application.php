@@ -175,7 +175,7 @@ class Application extends CompressableExternalModule
                 // Explode url by symbols '/'
                 $url = explode('/', $url);
                 // If isset url with params search and param page equal 0
-                if (isset($url[4]) && $url[3] == '0') {
+                if (isset($url[4]) && $url[3] != 'form') {
                     // Default value for search field
                     $paramSearch = '';
                     // Default value for search field
