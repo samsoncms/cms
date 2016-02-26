@@ -170,7 +170,19 @@ class Application extends CompressableExternalModule
         if (\samsoncms\Application::find(url()->module, $app/*@var $app App*/)) {
             // If module has sub_menu view - render it
             if ($app->findView('sub_menu')) {
-                $subMenu .= $app->view('sub_menu')->set(t($app->name, true), 'appName')->output();
+				// Get url params
+                $url =  $_SERVER['REQUEST_URI'];
+                // Explode url by symbols '/'
+                $url = explode('/', $url);
+                // Default value for search field
+                $paramSearch = '';
+                // If isset url with params search
+                if (isset($url[4]) && $url[3] == '0') {
+                    // Update default value search
+                    $paramSearch = urldecode($url[4]);
+                }
+				
+                $subMenu .= $app->view('sub_menu')->set($paramSearch, 'search')->set(t($app->name, true), 'appName')->output();
             }
         }
     }
