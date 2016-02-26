@@ -174,15 +174,17 @@ class Application extends CompressableExternalModule
                 $url =  $_SERVER['REQUEST_URI'];
                 // Explode url by symbols '/'
                 $url = explode('/', $url);
-                // Default value for search field
-                $paramSearch = '';
                 // If isset url with params search
                 if (isset($url[4]) && $url[3] == '0') {
-                    // Update default value search
+                    // Default value for search field
+                    $paramSearch = '';
+                    // Default value for search field
                     $paramSearch = urldecode($url[4]);
+                    // Set params search
+                    $app->set($paramSearch, 'search');
                 }
 				
-                $subMenu .= $app->view('sub_menu')->set($paramSearch, 'search')->set(t($app->name, true), 'appName')->output();
+                $subMenu .= $app->view('sub_menu')->set(t($app->name, true), 'appName')->output();
             }
         }
     }
