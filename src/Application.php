@@ -175,11 +175,9 @@ class Application extends CompressableExternalModule
                 // If isset url with params search and param page equal 0
                 if (isset($url[4]) && $url[3] != 'form') {
                     // Default value for search field
-                    $paramSearch = '';
-                    // Default value for search field
                     $paramSearch = urldecode($url[4]);
                     // Set params search
-                    $app->search($paramSearch);
+                    $app->set($paramSearch, 'search');
                 }
 				
                 $subMenu .= $app->view('sub_menu')->set(t($app->name, true), 'appName')->output();
