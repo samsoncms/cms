@@ -2,6 +2,7 @@
 namespace samsoncms\cms;
 
 use samson\core\CompressableExternalModule;
+use samson\core\SamsonLocale;
 use samsonphp\event\Event;
 use samsonphp\router\Module;
 
@@ -99,14 +100,24 @@ class Application extends CompressableExternalModule
     public function buildUrl(&$urlObj, &$httpHost, &$urlParams)
     {
         if ($this->isCMS) {
-            array_unshift($urlParams, $this->baseUrl);
+            if (in_array($urlParams[0], SamsonLocale::get(), true)) {
+                array_splice($urlParams, 1, 0, array($this->baseUrl));
+                $urlParams = array_values($urlParams);
+            } else {
+                array_unshift($urlParams, $this->baseUrl);
+            }
         }
     }
 
     public function parseUrl(&$urlObj, &$urlArgs)
     {
         if ($this->isCMS) {
-            array_shift($urlArgs);
+            if (in_array($urlArgs[0], SamsonLocale::get(), true)) {
+                unset($urlArgs[1]);
+                $urlArgs = array_values($urlArgs);
+            } else {
+                array_shift($urlArgs);
+            }
         }
     }
 
