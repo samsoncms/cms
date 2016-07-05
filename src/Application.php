@@ -4,6 +4,7 @@ namespace samsoncms\cms;
 use samson\core\CompressableExternalModule;
 use samson\core\SamsonLocale;
 use samsonphp\event\Event;
+use samsonphp\resource\Router;
 use samsonphp\router\Module;
 
 /**
@@ -19,39 +20,74 @@ class Application extends CompressableExternalModule
 
     public $baseUrl = 'cms';
 
+    /** @var array Collection of SamsonCMS related modules */
+    protected $moduleList = [];
+
     /** @var bool Flag that currently we are woring in SamsonCMS */
     protected $isCMS = false;
 
-    public function init(array $params = array())
+    //[PHPCOMPRESSOR(remove,start)]
+    /**
+     * Remove unnecessary modules list for SamsonCMS from loaded modules
+     * and return left modules.
+     *
+     * @param array $otherModuleList List of SamsonCMS unneeded modules
+     */
+    public function filterModuleList(&$otherModuleList = [])
     {
-        //trace('cmsInit');
-        // Old applications main page rendering
-        Event::subscribe('template.main.rendered', array($this, 'oldMainRenderer'));
-        // Old applications menu rendering
-        Event::subscribe('template.menu.rendered', array($this, 'oldMenuRenderer'));
-
-        Event::subscribe('samson.url.build', array($this, 'buildUrl'));
-
-        Event::subscribe('samson.url.args.created', array($this, 'parseUrl'));
-
-        Event::subscribe(Module::EVENT_ROUTE_FOUND, array($this, 'activeModuleHandler'));
-
-        Event::subscribe('samsonphp.router.create.module.routes', array($this, 'updateCMSPrefix'));
-
-        //[PHPCOMPRESSOR(remove,start)]
-        $moduleList   = $this->system->module_stack;
+        // Gather all project specific modules that do not dependent to SamsonCMS
+        $parentDependencies = [];
         foreach ($this->system->module_stack as $id => $module) {
-            if (!$this->isModuleDependent($module) && $id != 'core' && !$this->ifModuleRelated($module)) {
-                unset($moduleList[$id]);
+            // Module dependency at project level composer.json and is not this module
+            if (array_key_exists('projectRequireDev', $module->composerParameters) && $module->composerParameters['projectRequireDev'] === true && $id !== $this->id()) {
+                $parentDependencies = array_merge($module->composerParameters['required'], [$module->composerParameters['composerName']], $parentDependencies);
             }
         }
+        // Remove duplicates
+        $parentDependencies = array_unique($parentDependencies);
 
-        // Generate resources for new module
-        $this->system->module('resourcer')->generateResources($moduleList, $this->path() . 'app/view/index.php');
-        //[PHPCOMPRESSOR(remove,end)]
+        // Gather project-only related modules
+        $projectModules = [];
+        foreach ($this->system->module_stack as $id => $module) {
+            if (!array_key_exists('composerName', $module->composerParameters)) {
+                $projectModules[$id] = $module;
+            } elseif (array_key_exists('composerName', $module->composerParameters) && in_array($module->composerParameters['composerName'], $parentDependencies)) {
+                $projectModules[$id] = $module;
+            }
+        }
+        $otherModuleList = $projectModules;
 
-        // Call parent initialization
-        return parent::init($params);
+        // Gather SamsonCMS-only related modules
+        $this->moduleList = $this->system->module_stack;
+        foreach ($this->system->module_stack as $id => $module) {
+            if (!$this->isModuleDependent($module) && $id !== 'core' && !$this->ifModuleRelated($module)) {
+                unset($this->moduleList[$id]);
+            }
+        }
+    }
+
+    /**
+     * Check if passed module is related to SamsonCMS.
+     * Also method stores data to flag variable.
+     *
+     * @param $module
+     *
+     * @return bool True if module related to SamsonCMS
+     */
+    public function ifModuleRelated($module)
+    {
+        // Analyze if module class or one of its parents has samsoncms\ namespace pattern
+        return count(preg_grep('/samsoncms\\\\/i', array_merge(array(get_class($module)), class_parents($module))));
+    }
+
+    /** SamsonCMS preparation stage handler */
+    public function prepare()
+    {
+        /**
+         * Subscribe for router resource initialization to remove SamsonCMS modules as we will generate
+         * SamsonCMS resources manually
+         */
+        Event::subscribe(Router::EVENT_START_GENERATE_RESOURCES, [$this, 'filterModuleList']);
     }
 
     /**
@@ -63,6 +99,37 @@ class Application extends CompressableExternalModule
     protected function isModuleDependent($module)
     {
         return isset($module->composerParameters['composerName']) && in_array($module->composerParameters['composerName'], $this->composerParameters['required']);
+    }
+
+    //[PHPCOMPRESSOR(remove,end)]
+
+    /**
+     * SamsonCMS initialization stage handler
+     *
+     * @param array $params Initialization parameters
+     *
+     * @return bool Initialization stage result
+     */
+    public function init(array $params = array())
+    {
+        // Old applications main page rendering
+        Event::subscribe('template.main.rendered', array($this, 'oldMainRenderer'));
+
+        // Old applications menu rendering
+        Event::subscribe('template.menu.rendered', array($this, 'oldMenuRenderer'));
+
+        Event::subscribe('samson.url.build', array($this, 'buildUrl'));
+
+        Event::subscribe('samson.url.args.created', array($this, 'parseUrl'));
+
+        Event::subscribe(Module::EVENT_ROUTE_FOUND, array($this, 'activeModuleHandler'));
+
+        Event::subscribe('samsonphp.router.create.module.routes', array($this, 'updateCMSPrefix'));
+
+        // Generate resources for new module
+        //[PHPCOMPRESSOR(remove,start)]
+        $this->system->module('resourcer')->generateResources($this->moduleList, $this->path() . 'app/view/index.php');
+        //[PHPCOMPRESSOR(remove,end)]
     }
 
     public function isCMS()
@@ -119,20 +186,6 @@ class Application extends CompressableExternalModule
                 array_shift($urlArgs);
             }
         }
-    }
-
-    /**
-     * Check if passed module is related to SamsonCMS.
-     * Also method stores data to flag variable.
-     *
-     * @param $module
-     *
-     * @return bool True if module related to SamsonCMS
-     */
-    public function ifModuleRelated($module)
-    {
-        // Analyze if module class or one of its parents has samsoncms\ namespace pattern
-        return sizeof(preg_grep('/samsoncms\\\\/i', array_merge(array(get_class($module)), class_parents($module))));
     }
 
     public function __base()
