@@ -64,6 +64,15 @@ class Application extends CompressableExternalModule
                 unset($this->moduleList[$id]);
             }
         }
+
+        /**
+         * Change modules list between main web-application and SamsonCMS
+         */
+        // TODO: As this is processed before routing than we just check URL
+        if ($this->isCMS() || strpos($_SERVER['REQUEST_URI'], '/'.$this->id.'/') !== false) {
+            // Switch module list to SamsonCMS module list
+            $otherModuleList = $this->moduleList;
+        }
     }
 
     /**
