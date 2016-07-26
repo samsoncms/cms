@@ -15,9 +15,7 @@
     "samsoncms/signin":"*",
     "samsoncms/security":"*",
     "samsoncms/field":"*",
-    "samsonos/cms_app_gallery":"*",
-    "samsonos/cms_app_relatedmaterial":"*",
-    "samsonos/cms_input_material":"*"
+    "samsoncms/gallery":"*"
   },
   "license": "Open Software License (OSL) v 3.0",
   "homepage": "http://samsoncms.com/",
