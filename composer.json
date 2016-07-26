@@ -14,7 +14,7 @@
     "samsoncms/materialtable":"*",
     "samsoncms/signin":"*",
     "samsoncms/security":"*",
-    "samsonos/cms_app_field":"*",
+    "samsoncms/field":"*",
     "samsonos/cms_app_gallery":"*",
     "samsonos/cms_app_relatedmaterial":"*",
     "samsonos/cms_input_material":"*"
