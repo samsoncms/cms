@@ -7,7 +7,6 @@
       "email": "egorov@samsonos.com"
     }
   ],
-  "minimum-stability": "dev",
   "require": {
     "samsoncms/material":"*",
     "samsoncms/user":"*",
