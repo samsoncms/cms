@@ -11,14 +11,14 @@
   "require": {
     "samsoncms/material":"*",
     "samsoncms/user":"*",
-    "samsonos/cms_app_navigation":"*",
+    "samsoncms/navigation":"*",
+    "samsoncms/materialtable":"*",
+    "samsoncms/signin":"*",
+    "samsoncms/security":"*",
     "samsonos/cms_app_field":"*",
     "samsonos/cms_app_gallery":"*",
     "samsonos/cms_app_relatedmaterial":"*",
-    "samsonos/cms_app_materialtable":"*",
-    "samsonos/cms_input_material":"*",
-    "samsoncms/signin":"*",
-    "samsoncms/security":"*"
+    "samsonos/cms_input_material":"*"
   },
   "license": "Open Software License (OSL) v 3.0",
   "homepage": "http://samsoncms.com/",
