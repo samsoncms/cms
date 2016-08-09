@@ -75,20 +75,6 @@ class Application extends CompressableExternalModule
         }
     }
 
-    /**
-     * Check if passed module is related to SamsonCMS.
-     * Also method stores data to flag variable.
-     *
-     * @param $module
-     *
-     * @return bool True if module related to SamsonCMS
-     */
-    public function ifModuleRelated($module)
-    {
-        // Analyze if module class or one of its parents has samsoncms\ namespace pattern
-        return count(preg_grep('/samsoncms\\\\/i', array_merge(array(get_class($module)), class_parents($module))));
-    }
-
     /** SamsonCMS preparation stage handler */
     public function prepare()
     {
@@ -111,6 +97,20 @@ class Application extends CompressableExternalModule
     }
 
     //[PHPCOMPRESSOR(remove,end)]
+    
+     /**
+     * Check if passed module is related to SamsonCMS.
+     * Also method stores data to flag variable.
+     *
+     * @param $module
+     *
+     * @return bool True if module related to SamsonCMS
+     */
+    public function ifModuleRelated($module)
+    {
+        // Analyze if module class or one of its parents has samsoncms\ namespace pattern
+        return count(preg_grep('/samsoncms\\\\/i', array_merge(array(get_class($module)), class_parents($module))));
+    }
 
     /**
      * SamsonCMS initialization stage handler
