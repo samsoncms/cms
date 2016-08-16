@@ -3,6 +3,7 @@ namespace samsoncms\cms;
 
 use samson\core\CompressableExternalModule;
 use samson\core\SamsonLocale;
+use samsonphp\compressor\Compressor;
 use samsonphp\event\Event;
 use samsonphp\resource\Router;
 use samsonphp\router\Module;
@@ -21,19 +22,18 @@ class Application extends CompressableExternalModule
     public $baseUrl = 'cms';
 
     /** @var array Collection of SamsonCMS related modules */
-    protected $moduleList = [];
+    protected $cmsModuleList = [];
+
+    protected $projectModuleList = [];
 
     /** @var bool Flag that currently we are woring in SamsonCMS */
     protected $isCMS = false;
 
+    protected $template = '';
+
     //[PHPCOMPRESSOR(remove,start)]
-    /**
-     * Remove unnecessary modules list for SamsonCMS from loaded modules
-     * and return left modules.
-     *
-     * @param array $otherModuleList List of SamsonCMS unneeded modules
-     */
-    public function filterModuleList(&$otherModuleList = [])
+
+    protected function prepareModuleList()
     {
         // Gather all project specific modules that do not dependent to SamsonCMS
         $parentDependencies = [];
@@ -47,23 +47,31 @@ class Application extends CompressableExternalModule
         $parentDependencies = array_unique($parentDependencies);
 
         // Gather project-only related modules
-        $projectModules = [];
+        $this->projectModuleList = [];
+        $this->cmsModuleList = $this->system->module_stack;
         foreach ($this->system->module_stack as $id => $module) {
             if (!array_key_exists('composerName', $module->composerParameters)) {
-                $projectModules[$id] = $module;
+                $this->projectModuleList[$id] = $module;
             } elseif (array_key_exists('composerName', $module->composerParameters) && in_array($module->composerParameters['composerName'], $parentDependencies)) {
-                $projectModules[$id] = $module;
+                $this->projectModuleList[$id] = $module;
             }
-        }
-        $otherModuleList = $projectModules;
-
-        // Gather SamsonCMS-only related modules
-        $this->moduleList = $this->system->module_stack;
-        foreach ($this->system->module_stack as $id => $module) {
             if (!$this->isModuleDependent($module) && $id !== 'core' && !$this->ifModuleRelated($module)) {
-                unset($this->moduleList[$id]);
+                unset($this->cmsModuleList[$id]);
             }
         }
+    }
+
+    /**
+     * Remove unnecessary modules list for SamsonCMS from loaded modules
+     * and return left modules.
+     *
+     * @param array $otherModuleList List of SamsonCMS unneeded modules
+     */
+    public function filterModuleList(&$otherModuleList = [])
+    {
+        $this->prepareModuleList();
+
+        $otherModuleList = $this->projectModuleList;
 
         /**
          * Change modules list between main web-application and SamsonCMS
@@ -71,9 +79,10 @@ class Application extends CompressableExternalModule
         // TODO: As this is processed before routing than we just check URL
         if ($this->isCMS() || strpos($_SERVER['REQUEST_URI'], '/'.$this->id.'/') !== false) {
             // Switch module list to SamsonCMS module list
-            $otherModuleList = $this->moduleList;
+            $otherModuleList = $this->cmsModuleList;
         }
     }
+
 
     /** SamsonCMS preparation stage handler */
     public function prepare()
@@ -96,9 +105,17 @@ class Application extends CompressableExternalModule
         return isset($module->composerParameters['composerName']) && in_array($module->composerParameters['composerName'], $this->composerParameters['required']);
     }
 
+    public function getModuleList(& $moduleListArray)
+    {
+        $this->prepareModuleList();
+        $moduleListArray[Router::I_MAIN_PROJECT_TEMPLATE] = $this->projectModuleList;
+        $moduleListArray[$this->template] = $this->cmsModuleList;
+    }
+
     //[PHPCOMPRESSOR(remove,end)]
-    
-     /**
+
+
+    /**
      * Check if passed module is related to SamsonCMS.
      * Also method stores data to flag variable.
      *
@@ -135,9 +152,14 @@ class Application extends CompressableExternalModule
 
         Event::subscribe('samsonphp.router.create.module.routes', array($this, 'updateCMSPrefix'));
 
+        Event::subscribe(Compressor::E_CREATE_MODULE_LIST, array($this, 'getModuleList'));
+
+        //url()->parse();
+        $this->template = $this->path() . 'app/view/index.php';
+
         // Generate resources for new module
         //[PHPCOMPRESSOR(remove,start)]
-        $this->system->module('resourcer')->generateResources($this->moduleList, $this->path() . 'app/view/index.php');
+        //$this->system->module('resourcer')->generateResources($this->cmsModuleList, $this->path() . 'app/view/index.php');
         //[PHPCOMPRESSOR(remove,end)]
     }
 
@@ -151,10 +173,11 @@ class Application extends CompressableExternalModule
         // Define if routed module is related to SamsonCMS
         if($this->isCMS = $this->ifModuleRelated($module)){
             // TODO: This should be removed - Reparse url
+
             url()->parse();
 
             // Switch template to SamsonCMS
-            $this->system->template($this->path() . 'app/view/index.php', true);
+            $this->system->template($this->template, true);
 
             Event::fire(self::EVENT_IS_CMS, array(&$this));
         }
