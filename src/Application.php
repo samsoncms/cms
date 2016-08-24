@@ -35,9 +35,11 @@ class Application extends CompressableExternalModule
 
     protected function prepareModuleList()
     {
+        $this->cmsModuleList = $this->system->getContainer()->getServices('module');
+
         // Gather all project specific modules that do not dependent to SamsonCMS
         $parentDependencies = [];
-        foreach ($this->system->module_stack as $id => $module) {
+        foreach ($this->cmsModuleList as $id => $module) {
             // Module dependency at project level composer.json and is not this module
             if (array_key_exists('projectRequireDev', $module->composerParameters) && $module->composerParameters['projectRequireDev'] === true && $id !== $this->id()) {
                 $parentDependencies = array_merge($module->composerParameters['required'], [$module->composerParameters['composerName']], $parentDependencies);
@@ -48,8 +50,7 @@ class Application extends CompressableExternalModule
 
         // Gather project-only related modules
         $this->projectModuleList = [];
-        $this->cmsModuleList = $this->system->module_stack;
-        foreach ($this->system->module_stack as $id => $module) {
+        foreach ($this->cmsModuleList as $id => $module) {
             if (!array_key_exists('composerName', $module->composerParameters)) {
                 $this->projectModuleList[$id] = $module;
             } elseif (array_key_exists('composerName', $module->composerParameters) && in_array($module->composerParameters['composerName'], $parentDependencies)) {
