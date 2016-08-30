@@ -8,6 +8,7 @@
     }
   ],
   "require": {
+    "samsonphp/css":"*",
     "samsoncms/material":"*",
     "samsoncms/user":"*",
     "samsoncms/navigation":"*",
