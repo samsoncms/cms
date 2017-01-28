@@ -159,7 +159,7 @@ class Application extends CompressableExternalModule
             $prefix = '/' . $this->baseUrl . $prefix;
         }
     }
-    public function buildUrl(&$urlObj, &$httpHost, &$urlParams)
+    public function buildUrl($urlObj, &$httpHost, &$urlParams)
     {
         if ($this->isCMS) {
             if (in_array($urlParams[0], SamsonLocale::get(), true)) {
@@ -170,7 +170,7 @@ class Application extends CompressableExternalModule
             }
         }
     }
-    public function parseUrl(&$urlObj, &$urlArgs)
+    public function parseUrl($urlObj, &$urlArgs)
     {
         if ($this->isCMS) {
             if (in_array($urlArgs[0], SamsonLocale::get(), true)) {
