@@ -68,6 +68,18 @@ class Application extends CompressableExternalModule
             $otherModuleList = $this->cmsModuleList;
         }
     }
+
+    /**
+     * Check  web-root as last path in resource list
+     * @param string $webRootPath web-root path
+     */
+    public function filterRootDir(&$webRootPath = '')
+    {
+        if ($this->isCMS() || strpos($_SERVER['REQUEST_URI'], '/'.$this->id.'/') !== false) {
+            $webRootPath = false;
+        }
+    }
+
     /** SamsonCMS preparation stage handler */
     public function prepare()
     {
@@ -76,6 +88,9 @@ class Application extends CompressableExternalModule
          * SamsonCMS resources manually
          */
         Event::subscribe(Router::EVENT_START_GENERATE_RESOURCES, [$this, 'filterModuleList']);
+
+        /** Subscribe for checking  web-root as last path in resource list */
+        Event::subscribe(Router::E_ROOT_DIR_PATH, [$this, 'filterRootDir']);
     }
     /**
      * If module is dependent from current module through composer.json.
