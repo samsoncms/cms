@@ -41,9 +41,13 @@ class Application extends CompressableExternalModule
         foreach ($this->system->module_stack as $id => $module) {
             if (!array_key_exists('composerName', $module->composerParameters)) {
                 $this->projectModuleList[$id] = $module;
-            } elseif (array_key_exists('composerName', $module->composerParameters) && in_array($module->composerParameters['composerName'], $parentDependencies)) {
+            } elseif (array_key_exists('composerName', $module->composerParameters) &&
+                in_array($module->composerParameters['composerName'], $parentDependencies) &&
+                (0 !== strpos($id, 'cms_'))
+            ) {
                 $this->projectModuleList[$id] = $module;
             }
+
             if (!$this->isModuleDependent($module) && $id !== 'core' && !$this->ifModuleRelated($module)) {
                 unset($this->cmsModuleList[$id]);
             }
